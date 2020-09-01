@@ -67,7 +67,7 @@ nav {
     }
 }
 
-.events {
+.events, .officers {
     position: absolute;
     right: 140px;
     top: 20%;
@@ -93,6 +93,10 @@ nav {
             
             &:not(:last-child) {
                 margin-bottom: 50px;
+            }
+
+            &.underline {
+                text-decoration: underline;
             }
         }
     }

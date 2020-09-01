@@ -66,13 +66,45 @@ def getNav():
     return navList
 
 
+def getOfficers():
+    """Retrieves officers from contentful
+
+    Returns:
+        dict: Officer info in rank order
+    """
+    officers = client.entries(
+        {'content_type': 'officers', 'order': 'fields.order'})
+
+    officerList = []
+
+    for officer in officers:
+        officerInfo = {}
+
+        officerInfo['name'] = officer.name
+        officerInfo['bio'] = officer.bio
+        officerInfo['photo'] = officer.photo
+        officerInfo['position'] = officer.position
+
+        officerList.append(officerInfo)
+
+    return officerList
+
+
+siteName = getSiteName()
+nav = getNav()
+officers = getOfficers()
+
+
 @app.route("/")
 def home():
-    siteName = getSiteName()
     events = getEvents()
-    nav = getNav()
 
     return render_template('index.html', name=siteName, events=events, navItems=nav)
+
+
+@app.route("/about")
+def about():
+    return render_template('about.html', name=siteName, navItems=nav, officers=officers)
 
 
 if __name__ == '__main__':
