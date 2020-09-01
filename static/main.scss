@@ -1,0 +1,7 @@
+@import 'variables';
+
+html, body {
+    background-color: $primary;
+    color: $secondary;
+    font-family: $font-family;
+}
