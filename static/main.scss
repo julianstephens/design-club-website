@@ -37,6 +37,14 @@ h1 {
     }
 }
 
+h2 {
+    font-weight: 400;
+    font-size: $font-md;
+    position: absolute;
+    right: 140px;
+    top: 15%;
+}
+
 nav {
     position: absolute;
     bottom: 0;
@@ -59,5 +67,34 @@ nav {
     }
 }
 
+.events {
+    position: absolute;
+    right: 140px;
+    top: 20%;
+    margin-top: 100px;
+    width: 70%;
 
+    ol {
+        list-style: none;
+        counter-reset: custom-counter;
+        margin: 0;
+        padding: 0;
+        
+        li {
+            font-size: $font-sm;
+            counter-increment: custom-counter;
+            margin-right: 20%;
+            &::after {
+                content: "0" counter(custom-counter);
+                font-size: $font-sm;
+                position: absolute;
+                right: 0;
+            }
+            
+            &:not(:last-child) {
+                margin-bottom: 50px;
+            }
+        }
+    }
+}
 

@@ -12,18 +12,18 @@
     <div class="col">
         <h1 class="title rotate">{{ name }}</h1>
     </div>
-    <!-- <ul>
-        {% for event in events %}
-          <li>{{ event }}</li>
-        {% endfor %}
-    </ul> -->
-
-
-    
     <nav>
         {% for item in navItems %}
             <a href="#">{{ item }}</a>
         {% endfor %}
-    </nav>    
+    </nav>
+    <h2>Upcoming Events</h2>
+    <div class="events">
+        <ol>
+            {% for event in events %}
+                <li>{{ event }}</li>
+            {% endfor %}
+        </ol>
+    </div>
 </body>
 </html>
