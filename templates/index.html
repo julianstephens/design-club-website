@@ -9,11 +9,21 @@
     <title>Design Club</title>
 </head>
 <body>
-    <h1>{{ name }}</h1>
-    <ul>
+    <div class="col">
+        <h1 class="title rotate">{{ name }}</h1>
+    </div>
+    <!-- <ul>
         {% for event in events %}
           <li>{{ event }}</li>
         {% endfor %}
-    </ul>
+    </ul> -->
+
+
+    
+    <nav>
+        {% for item in navItems %}
+            <a href="#">{{ item }}</a>
+        {% endfor %}
+    </nav>    
 </body>
 </html>

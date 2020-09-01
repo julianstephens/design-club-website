@@ -1,7 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
 @import 'variables';
 
 html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
     background-color: $primary;
     color: $secondary;
     font-family: $font-family;
+    padding: 0;
 }
+
+h1 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+
+    &.title{
+        font-size: $font-lg;
+    }
+
+    &.rotate {
+        transform: rotate(-90deg);  
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        margin: 0;
+        text-align: left;
+        position: absolute;
+        left: -5%;
+        top: 20%;
+        transform-origin: bottom;
+    }
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    margin-left: 50px;
+
+    a {
+        text-decoration: none;
+        color: $secondary;
+        font-size: $font-md;
+        margin-top: 90%;
+
+        &:not(:last-child) {
+            margin-right: 70px;
+        }
+    
+        &:focus, &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+

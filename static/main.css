@@ -1,7 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); 
+
 
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); 
   html, body {
-    background-color: #121416;
-    color: #F8F9FA;
-    font-family: 'Almarai', sans-serif; }
+    margin: 0;
+    height: 100%; }
+
+    body {
+      background-color: #121416;
+      color: #F8F9FA;
+      font-family: 'Almarai', sans-serif;
+      padding: 0; }
+
+      h1 {
+        font-weight: 400;
+        margin: 0;
+        padding: 0; }
+        h1.title {
+          font-size: 60px; }
+          h1.rotate {
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            margin: 0;
+            text-align: left;
+            position: absolute;
+            left: -5%;
+            top: 20%;
+            transform-origin: bottom; }
+
+  nav {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    margin-left: 50px; }
+    nav a {
+      text-decoration: none;
+      color: #F8F9FA;
+      font-size: 24px;
+      margin-top: 90%; }
+      nav a:not(:last-child) {
+        margin-right: 70px; }
+        nav a:focus, nav a:hover {
+          text-decoration: underline; }
