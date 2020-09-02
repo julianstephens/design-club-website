@@ -49,23 +49,6 @@ def getEvents():
     return eventList
 
 
-def getNav():
-    """Retrieves nav items from contentful
-
-    Returns:
-        list: Nav items in display order
-    """
-    navItems = client.entries(
-        {'content_type': 'navBar', 'order': 'fields.order'})
-
-    navList = []
-
-    for nav in navItems:
-        navList.append(nav.item)
-
-    return navList
-
-
 def getOfficers():
     """Retrieves officers from contentful
 
@@ -91,7 +74,6 @@ def getOfficers():
 
 
 siteName = getSiteName()
-nav = getNav()
 officers = getOfficers()
 
 
@@ -99,12 +81,24 @@ officers = getOfficers()
 def home():
     events = getEvents()
 
-    return render_template('index.html', name=siteName, events=events, navItems=nav)
+    return render_template('index.html', name=siteName, events=events)
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html', name=siteName, navItems=nav, officers=officers)
+    return render_template('about.html', name=siteName, officers=officers)
+
+
+@app.route("/blog")
+def blog():
+    return "Blog"
+    #  return render_template('blog.html', name=siteName, officers=officers)
+
+
+@app.route("/resources")
+def resources():
+    return "Resources"
+    #  return render_template('blog.html', name=siteName, officers=officers)
 
 
 if __name__ == '__main__':

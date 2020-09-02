@@ -52,27 +52,27 @@
           nav a:focus, nav a:hover {
             text-decoration: underline; }
 
-  .events, .officers {
+  .content {
     position: absolute;
     right: 140px;
     top: 20%;
     margin-top: 100px;
     width: 70%; }
-    .events ol, .officers ol {
+    .content ol {
       list-style: none;
       counter-reset: custom-counter;
       margin: 0;
       padding: 0; }
-      .events ol li, .officers ol li {
+      .content ol li {
         font-size: 28px;
         counter-increment: custom-counter;
         margin-right: 20%; }
-        .events ol li::after, .officers ol li::after {
+        .content ol li::after {
           content: "0" counter(custom-counter);
           font-size: 28px;
           position: absolute;
           right: 0; }
-          .events ol li:not(:last-child), .officers ol li:not(:last-child) {
+          .content ol li:not(:last-child) {
             margin-bottom: 50px; }
-            .events ol li.underline, .officers ol li.underline {
+            .content ol li.underline {
               text-decoration: underline; }

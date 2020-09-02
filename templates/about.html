@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% assets "scss_all" %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    {% endassets %}
-    <title>Design Club</title>
-</head>
-<body>
-    <div class="col">
-        <h1 class="title rotate">{{ name }}</h1>
-    </div>
-    <nav>
-        {% for item in navItems %}
-            <a href="#">{{ item }}</a>
-        {% endfor %}
-    </nav>
-    <h2>Officers</h2>
-    <div class="officers">
-        <ol>
-            {% for officer in officers %}
-                <li class="underline">{{ officer.name }}: {{ officer.position }}</li>
-            {% endfor %}
-        </ol>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block section %}Officers{% endblock %}
+{% block content %}
+<ol>
+    {% for officer in officers %}
+        <li class="underline">{{ officer.name }}: {{ officer.position }}</li>
+    {% endfor %}
+</ol>
+{% endblock %}

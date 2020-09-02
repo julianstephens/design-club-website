@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assets "scss_all" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    {% endassets %}
+    <title>{% block title %}{% endblock %} - Design Club</title>
+</head>
+<body>
+    <div class="col">
+        <h1 class="title rotate">{{ name }}</h1>
+    </div>
+    <h2>{% block section %}{% endblock %}</h2>
+    <nav>
+        <a href="{{ url_for('about') }}">about</a>
+        <a href="{{ url_for('blog') }}">blog</a>
+        <a href="{{ url_for('resources') }}">resources</a>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
