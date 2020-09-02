@@ -4,7 +4,7 @@
 {% block content %}
 <ol>
     {% for officer in officers %}
-        <li class="underline">{{ officer.name }}: {{ officer.position }}</li>
+        <li class="underline"><a href="{{ url_for('about', officer_name=officer.name.split()[0]) }}">{{ officer.name }}: {{ officer.position }}</a></li>
     {% endfor %}
 </ol>
 {% endblock %}

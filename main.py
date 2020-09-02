@@ -73,26 +73,66 @@ def getOfficers():
     return officerList
 
 
+def getOfficerBio(name):
+    bioTags = {
+        'Julian': "0kFzv1fjg1CvGGpbgLH8w",
+        'MaKenzie': "lGCdEYxRZ2WxD9lVcgtOG",
+        'Blanca': "704Yncda3h4nLVwm7TX8p0",
+        'Michelle': "1Okz31RuR8ivPBfhFuAA5h",
+        'Kimberly': "7622yy2YW1hTI6HA8FEE9d"
+    }
+
+    info = client.entry(bioTags[name])
+
+    return info
+
+
+def getBlogPosts():
+    posts = client.entries(
+        {'content_type': 'blogPost', 'order': 'fields.date'})
+
+    postList = []
+
+    for post in posts:
+        postInfo = {}
+
+        postInfo['title'] = post.title
+        postInfo['author'] = post.author
+        postInfo['text'] = post.text
+        postInfo['type'] = post.type
+        postInfo['media'] = post.media.url()
+
+        postList.append(postInfo)
+
+    return postList
+
+
 siteName = getSiteName()
 officers = getOfficers()
+posts = getBlogPosts()
 
 
 @app.route("/")
-def home():
+def index():
     events = getEvents()
 
     return render_template('index.html', name=siteName, events=events)
 
 
-@app.route("/about")
-def about():
-    return render_template('about.html', name=siteName, officers=officers)
+@app.route("/about", defaults={'officer_name': None})
+@app.route("/about/<officer_name>")
+def about(officer_name):
+    if not officer_name:
+        return render_template('about.html', name=siteName, officers=officers)
+
+    info = getOfficerBio(officer_name)
+
+    return render_template('profile.html', name=siteName, officer_name=officer_name, info=info)
 
 
 @app.route("/blog")
 def blog():
-    return "Blog"
-    #  return render_template('blog.html', name=siteName, officers=officers)
+    return render_template('blog.html', name=siteName, posts=posts)
 
 
 @app.route("/resources")

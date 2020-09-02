@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ officer_name }}{% endblock %}
+{% block section %}{{ officer_name }}{% endblock %}
+{% block content %}
+<p>{{ info.bio }}</p>
+<div class="profile-pic">
+    <img src="{{ info.photo.url() }}" alt="">
+</div>
+{% endblock %}
