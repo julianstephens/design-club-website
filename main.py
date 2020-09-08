@@ -1,20 +1,25 @@
 from flask import Flask, render_template
 from flask_assets import Environment, Bundle
+from flaskext.markdown import Markdown
 import contentful
 
 
 app = Flask(__name__)
 
-# Configure flask assets for sass
+# Configure flask assets for sass and js
 assets = Environment(app)
 assets.url = app.static_url_path
 scss = Bundle('_variables.scss', 'main.scss',
-              filters='pyscss', output='main.css')
+              filters=('pyscss', 'rcssmin'), output='main.css')
+js = Bundle('main.js', filters='jsmin', output='dist/app.js')
 assets.register('scss_all', scss)
-
+assets.register('js_all', js)
 
 # Load custom config
 app.config.from_object("config.Config")
+
+# Flask Markdown
+Markdown(app)
 
 # Connect to contentful client
 client = contentful.Client(
@@ -89,7 +94,7 @@ def getOfficerBio(name):
 
 def getBlogPosts():
     posts = client.entries(
-        {'content_type': 'blogPost', 'order': 'fields.date'})
+        {'content_type': 'blogPost', 'order': '-fields.date'})
 
     postList = []
 
@@ -97,6 +102,7 @@ def getBlogPosts():
         postInfo = {}
 
         postInfo['title'] = post.title
+        postInfo['slug'] = post.slug
         postInfo['author'] = post.author
         postInfo['text'] = post.text
         postInfo['type'] = post.type
@@ -130,9 +136,14 @@ def about(officer_name):
     return render_template('profile.html', name=siteName, officer_name=officer_name, info=info)
 
 
-@app.route("/blog")
-def blog():
-    return render_template('blog.html', name=siteName, posts=posts)
+@app.route("/blog", defaults={'index': None, 'article_slug': None})
+@app.route("/blog/<index>/<article_slug>")
+def blog(index, article_slug):
+    if not article_slug:
+        return render_template('blog.html', name=siteName, posts=posts)
+
+    post = posts[int(index)]
+    return render_template('post.html', name=siteName, post=post)
 
 
 @app.route("/resources")

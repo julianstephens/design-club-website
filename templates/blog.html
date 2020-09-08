@@ -3,9 +3,9 @@
 {% block section %}Blog{% endblock %}
 {% block content %}
     {% for post in posts %}
-        <div class="grid-item">
+        <button class="grid-item" data-index="{{ loop.index0 }}" data-slug="{{ post.slug }}">
             <p class="title">{{ post.title }}</p>
             <p class="type">{{ post.type }}</p>
-        </div>
+        </button>
     {% endfor %}
 {% endblock %}
